@@ -21,7 +21,9 @@ include 'server/server.php';
 $server = new server();
 
 //si es 1 es admin si es 0 es empleado
-$admin = $server->employeeOnCharge($_SESSION['iduser']);
+if (isset($_SESSION['iduser'])) {
+    $admin = $server->employeeOnCharge($_SESSION['iduser']);
+}
 if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
     echo "Bienvenido, " . $_SESSION['usuario'];
 } else {
