@@ -53,7 +53,7 @@ class server
         $phone = mysqli_real_escape_string($conn, $phone);
 
         // Preparar la consulta SQL
-        $sql = "UPDATE users SET name = '$name', lastname = '$lastName', telefono = '$phone' , ecargado = '$charge' WHERE iduser = '$id'";
+        $sql = "UPDATE users SET name = '$name', lastname = '$lastName', telefono = '$phone' , encargado = '$charge' WHERE iduser = '$id'";
 
         // Ejecutar la consulta
         if (mysqli_query($conn, $sql)) {

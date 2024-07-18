@@ -97,7 +97,14 @@ $server = new server();
                                         <label for="phone" class="form-label fs-5">Telefono</label>
                                         <input type="text" class="form-control mb-3" id="phone" name="phone" value="<?= $empleado['telefono'] ?>">
                                         <label for="charge" class="form-label fs-5">Puesto trabajador</label>
-                                        <select name="charge" class="form-select" aria-label="Floating label select example">
+                                        <select name="charge" class="form-select" aria-label="Floating label select example"> 
+                                        <!-- if($empleado['encargado'] == 1){
+                                                    echo '<option value="1" selected>Encargado</option>
+                                                    <option value="0">Empleado</option>';
+                                                    }else{
+                                                        echo '<option value="1">Encargado</option>
+                                                        <option value="0" selected>Empleado</option>';
+                                                        }                                 -->
                                             <option value="1">Encargado</option>
                                             <option value="0">Empleado</option>
                                         </select>
