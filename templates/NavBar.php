@@ -41,6 +41,8 @@ if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
                 <button onclick="redirectToTodo()" class="btn btn-outline-success me-5 btn btn-sm fs-3 " type="button">Ir a Tareas</button>
                 <?php if ($admin == 1) : ?>
                 <button onclick="redirectToAdminEmployee()" class="btn btn-outline-success me-5 btn btn-sm fs-3 " type="button">Admin Empleados</button>
+                <button onclick="redirectToAdminClients()" class="btn btn-outline-success me-5 btn btn-sm fs-3 " type="button">Admin Clientes</button>
+
                 <?php endif; ?>
                 <div class="d-flex ">
                     <p class="pe-4 pt-2 fs-5">Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?>.</p>
@@ -148,5 +150,8 @@ if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
 
         function redirectToAdminEmployee() {
             window.location.href = 'adminEmployees.php';
+        }
+        function redirectToAdminClients() {
+            window.location.href = 'adminClients.php';
         }
     </script>

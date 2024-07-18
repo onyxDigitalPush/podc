@@ -89,17 +89,23 @@ $server = new server();
                                 <form name="editEmployee" method="POST">
                                     <input type="hidden" name="id" value="<?= $empleado['iduser'] ?>">
                                     <div class="m-4">
+                                        <input type="hidden" name="idEmployee" value="<?= $empleado['iduser'] ?>" >
                                         <label for="name" class="form-label fs-5">Nombre</label>
                                         <input type="text" class="form-control mb-3" id="name" name="name" value="<?= $empleado['name'] ?>">
                                         <label for="lastname" class="form-label fs-5">Apellidos</label>
                                         <input type="text" class="form-control mb-3" id="lastname" name="lastname" value="<?= $empleado['lastname'] ?>">
-                                        <label for="telefono" class="form-label fs-5">Telefono</label>
-                                        <input type="text" class="form-control mb-3" id="telefono" name="telefono" value="<?= $empleado['telefono'] ?>">
+                                        <label for="phone" class="form-label fs-5">Telefono</label>
+                                        <input type="text" class="form-control mb-3" id="phone" name="phone" value="<?= $empleado['telefono'] ?>">
+                                        <label for="charge" class="form-label fs-5">Puesto trabajador</label>
+                                        <select name="charge" class="form-select" aria-label="Floating label select example">
+                                            <option value="1">Encargado</option>
+                                            <option value="0">Empleado</option>
+                                        </select>
                                     </div>
 
                                     <div class="modal-footer p-1">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="button" onclick="editEmployees( <?= $empleado['iduser'] ?>, editEmployee.name.value, editEmployee.lastname.value, editEmployee.telefono.value)" class="btn btn-primary">Enviar</button>
+                                        <button type="button" onclick="editEmployees( this.form)" class="btn btn-primary">Enviar</button>
                                     </div>
                                 </form>
                             </div>
@@ -163,8 +169,13 @@ $server = new server();
             }
     }
 
-    function editEmployees(id, name, lastname, phone) {
-        console.log(id, name, lastname, phone);
+    function editEmployees(form) {
+        var id = form['id'].value;
+        var name = form['name'].value;
+        var lastname = form['lastname'].value;
+        var phone = form['phone'].value;
+        var charge = form['charge'].value;
+
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
@@ -172,7 +183,7 @@ $server = new server();
                 location.reload();
             }
         };
-        xmlhttp.open("GET", "server/redirects.php?action=editEmployee&id=" + id + "&name=" + name + "&lastname=" + lastname + "&phone=" + phone, true);
+        xmlhttp.open("GET", "server/redirects.php?action=editEmployee&id=" + id + "&name=" + name + "&lastname=" + lastname + "&phone=" + phone +"&charge=" + charge , true);
         xmlhttp.send();
     }
 
