@@ -45,6 +45,23 @@ switch ($_GET["action"]) {
         }
         break;
 
+        case "createTask":
+            try {
+                $name = $_GET['name'];
+                $client = $_GET['client'];
+                $assignedEmployee = $_GET['assignedEmployee'];
+                $date= $_GET['date'];
+                $time = $_GET['time'];
+                $server->createTask($name, $client, $assignedEmployee, $date, $time);
+                } catch (Exception $ex) {
+                    http_response_code(404);
+                    $msg = $ex->getMessage();
+                    echo $msg;
+                }
+                break;
+
+
+
     case "editTask":
         try {
             $id = $_GET['id'];

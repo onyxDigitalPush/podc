@@ -36,7 +36,7 @@ class server
         return $row;
     }
 
-    public function editEmployee($id, $name, $lastName, $phone , $charge)
+    public function editEmployee($id, $name, $lastName, $phone, $charge)
     {
         // Conectar a la base de datos
         $conn = mysqli_connect("localhost", "root", "", "simacol_cp");
@@ -130,6 +130,23 @@ class server
         }
     }
 
+    public function createTask($name, $client, $assignedemployee, $date, $time)
+    {
+        
+        require '../templates/conexion.php';
+        if (!$conn) {
+            die("Conexión fallida: " . mysqli_connect_error());
+        }
+        $sql = "INSERT INTO works (taskname, client, employeeasigned, date,
+        time,state) VALUES ('$name', '$client', '$assignedemployee', '$date', '$time',1)
+        ";
+        if (mysqli_query($conn, $sql)) {
+            echo "Registro creado correctamente.";
+        } else {
+            echo "Error al crear el registro: " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
     public function deleteTask($id)
     {
         $conn = mysqli_connect("localhost", "root", "", "simacol_cp");
@@ -192,20 +209,19 @@ class server
         }
     }
 
-    public function deleteClient($id){
+    public function deleteClient($id)
+    {
         require '../templates/conexion.php';
         // Verificar si la conexión fue exitosa
         if (!$conn) {
             die("Conexión fallida: " . mysqli_connect_error());
-            }
-            $sql = "DELETE FROM clients WHERE idclient = $id";
-            if (mysqli_query($conn, $sql)) {
-                echo "Registro eliminado correctamente.";
-                } else {
-                    echo "Error al eliminar el registro: " . mysqli_error($conn);
-                    }
-                    mysqli_close($conn);
-                    }
-
-    
+        }
+        $sql = "DELETE FROM clients WHERE idclient = $id";
+        if (mysqli_query($conn, $sql)) {
+            echo "Registro eliminado correctamente.";
+        } else {
+            echo "Error al eliminar el registro: " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
 }
