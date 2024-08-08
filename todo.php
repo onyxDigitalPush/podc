@@ -2,7 +2,7 @@
 require 'templates/NavBar.php';
 
 if (isset($_SESSION['admin'])) $id = $_SESSION['admin'];
-print_r($_SESSION);
+
 $server = new server();
 $tasks = $server->tasks();
 $clients = $server->getClients();
